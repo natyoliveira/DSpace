@@ -7,17 +7,16 @@
 # {4}  Task result
 # {5}  Workflow action taken
 #
-Subject: DSpace: Curation Task Report
+Subject: DSpace: Relatório de Curadoria
 
-Title:         {0}
-Collection:    {1}
-Submitted by:  {2}
+Título:         {0}
+Coleção:    {1}
+Submetido por:  {2}
 
-Curation task {3} has been performed
-with the following result:
+Tarefa de curadoria {3} foi realizada com o seguinte resultado:
 
 {4}
 
-Action taken on the submission: {5}
+Ação tomada na submissão: {5}
 
 DSpace

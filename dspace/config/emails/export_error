@@ -6,14 +6,14 @@
 #
 # See org.dspace.core.Email for information on the format of this file.
 #
-Subject: DSpace - The item export you requested was not completed.
-The item export you requested was not completed, due to the following reason:
+ 
+Subject: DSpace - O itemm que você exportou não foi concluído.
+O item que você exportou não foi conluído, pela seguinte razão:
  {0}
 
-For more information you may contact your system administrator:
+Para mais informações entre em contato com o administrador do sistema:
  {1}
 
 
-
-The DSpace Team
+DSpace
 
