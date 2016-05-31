@@ -79,105 +79,14 @@ for (int i = supportedLocales.length-1; i >= 0; i--)
 }
 }
 %>
-	<div class="jumbotron">
-       <%= topNews %>
+	<div class="jumbotron" style="background-image: url(<%= request.getContextPath() %>/image/quaresmeira.jpg); background-size: 100%;">
+	  	<h2>Repositório de Documentos DIPEQ-JBRJ</h2>
+		<h2>Seja bem-vindo!</h2> 
 	</div>
 
-<div class="row">
-<%
-if (submissions != null && submissions.count() > 0)
-{
-%>
-        <div class="col-md-8">
-        <div class="panel panel-primary">        
-        <div id="recent-submissions-carousel" class="panel-heading carousel slide">
-          <h3><fmt:message key="jsp.collection-home.recentsub"/>
-              <%
-    if(feedEnabled)
-    {
-	    	String[] fmts = feedData.substring(feedData.indexOf(':')+1).split(",");
-	    	String icon = null;
-	    	int width = 0;
-	    	for (int j = 0; j < fmts.length; j++)
-	    	{
-	    		if ("rss_1.0".equals(fmts[j]))
-	    		{
-	    		   icon = "rss1.gif";
-	    		   width = 80;
-	    		}
-	    		else if ("rss_2.0".equals(fmts[j]))
-	    		{
-	    		   icon = "rss2.gif";
-	    		   width = 80;
-	    		}
-	    		else
-	    	    {
-	    	       icon = "rss.gif";
-	    	       width = 36;
-	    	    }
-	%>
-	    <a href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/site"><img src="<%= request.getContextPath() %>/image/<%= icon %>" alt="RSS Feed" width="<%= width %>" height="15" vspace="3" border="0" /></a>
-	<%
-	    	}
-	    }
-	%>
-          </h3>
-          
-		  <!-- Wrapper for slides -->
-		  <div class="carousel-inner">
-		    <%
-		    boolean first = true;
-		    for (Item item : submissions.getRecentSubmissions())
-		    {
-		        DCValue[] dcv = item.getMetadata("dc", "title", null, Item.ANY);
-		        String displayTitle = "Untitled";
-		        if (dcv != null & dcv.length > 0)
-		        {
-		            displayTitle = dcv[0].value;
-		        }
-		        dcv = item.getMetadata("dc", "description", "abstract", Item.ANY);
-		        String displayAbstract = "";
-		        if (dcv != null & dcv.length > 0)
-		        {
-		            displayAbstract = dcv[0].value;
-		        }
-		%>
-		    <div style="padding-bottom: 50px; min-height: 200px;" class="item <%= first?"active":""%>">
-		      <div style="padding-left: 80px; padding-right: 80px; display: inline-block;"><%= StringUtils.abbreviate(displayTitle, 400) %> 
-		      	<a href="<%= request.getContextPath() %>/handle/<%=item.getHandle() %>"> 
-		      		<button class="btn btn-success" type="button">See</button>
-		      		</a>
-                        <p><%= StringUtils.abbreviate(displayAbstract, 500) %></p>
-		      </div>
-		    </div>
-		<%
-				first = false;
-		     }
-		%>
-		  </div>
 
-		  <!-- Controls -->
-		  <a class="left carousel-control" href="#recent-submissions-carousel" data-slide="prev">
-		    <span class="icon-prev"></span>
-		  </a>
-		  <a class="right carousel-control" href="#recent-submissions-carousel" data-slide="next">
-		    <span class="icon-next"></span>
-		  </a>
 
-          <ol class="carousel-indicators">
-		    <li data-target="#recent-submissions-carousel" data-slide-to="0" class="active"></li>
-		    <% for (int i = 1; i < submissions.count(); i++){ %>
-		    <li data-target="#recent-submissions-carousel" data-slide-to="<%= i %>"></li>
-		    <% } %>
-	      </ol>
-     </div></div></div>
-<%
-}
-%>
-<div class="col-md-4">
-    <%= sideNews %>
-</div>
-</div>
+
 <div class="container row">
 <%
 if (communities != null && communities.length != 0)
@@ -229,5 +138,101 @@ if (communities != null && communities.length != 0)
     	int discovery_facet_cols = 4;
     %>
 	<%@ include file="discovery/static-sidebar-facet.jsp" %>
+</div>
+
+<div class="row">
+<%
+if (submissions != null && submissions.count() > 0)
+{
+%>
+        <div class="col-md-8">
+        <div class="panel panel-primary">
+        <div id="recent-submissions-carousel" class="panel-heading carousel slide">
+          <h3><fmt:message key="jsp.collection-home.recentsub"/></h3>
+        <%--      <%
+    if(feedEnabled)
+    {
+                String[] fmts = feedData.substring(feedData.indexOf(':')+1).split(",");
+                String icon = null;
+                int width = 0;
+                for (int j = 0; j < fmts.length; j++)
+                {
+                        if ("rss_1.0".equals(fmts[j]))
+                        {
+                           icon = "rss1.gif";
+                           width = 80;
+                        }
+                        else if ("rss_2.0".equals(fmts[j]))
+                        {
+                           icon = "rss2.gif";
+                           width = 80;
+                        }
+                        else
+                    {
+                       icon = "rss.gif";
+                       width = 36;
+                    }
+        %>
+           <a href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/site"><img src="<%= request.getContextPath() %>/image/<%= icon %>" alt="RSS Feed" width="<%= width %>" height="15" vspace="3" border="0" /></a>
+        <%
+                }
+            }
+        %>
+          </h3>--%>
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <%
+                    boolean first = true;
+                    for (Item item : submissions.getRecentSubmissions())
+                    {
+                        DCValue[] dcv = item.getMetadata("dc", "title", null, Item.ANY);
+                        String displayTitle = "Untitled";
+                        if (dcv != null & dcv.length > 0)
+                        {
+                            displayTitle = dcv[0].value;
+                        }
+                        dcv = item.getMetadata("dc", "description", "abstract", Item.ANY);
+                        String displayAbstract = "";
+                        if (dcv != null & dcv.length > 0)
+                        {
+                            displayAbstract = dcv[0].value;
+                        }
+                %>
+                    <div style="padding-bottom: 50px; min-height: 200px;" class="item <%= first?"active":""%>">
+                      <div style="padding-left: 80px; padding-right: 80px; display: inline-block;"><%= StringUtils.abbreviate(displayTitle, 400) %>
+                        <a href="<%= request.getContextPath() %>/handle/<%=item.getHandle() %>">
+                                <button class="btn btn-success" type="button">See</button>
+                                </a>
+                        <p><%= StringUtils.abbreviate(displayAbstract, 500) %></p>
+                      </div>
+                    </div>
+                <%
+                                first = false;
+                     }
+                %>
+                  </div>
+
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#recent-submissions-carousel" data-slide="prev">
+                    <span class="icon-prev"></span>
+                  </a>
+                  <a class="right carousel-control" href="#recent-submissions-carousel" data-slide="next">
+                    <span class="icon-next"></span>
+                  </a>
+
+          <ol class="carousel-indicators">
+                    <li data-target="#recent-submissions-carousel" data-slide-to="0" class="active"></li>
+                    <% for (int i = 1; i < submissions.count(); i++){ %>
+                    <li data-target="#recent-submissions-carousel" data-slide-to="<%= i %>"></li>
+                    <% } %>
+              </ol>
+     </div></div></div>
+<%
+}
+%>
+<div class="col-md-4">
+
+</div>
 </div>
 </dspace:layout>
